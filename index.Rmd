@@ -12,4 +12,25 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to gender equality and how it correlates with regime type.
-Maybe I could look at women education levels compared to men, or even women's suffrage in different countries.
+Maybe I could look at women education levels compared to men, or even women's suffrage in different countries. Potentially, I could look at how women in power or participating in government/politics contribute to democracy.
+
+
+## Research Question
+
+Do high levels of female political participation make countries more democratic? As the number of women in a country's parliament increases, the electoral democratic index increases in that given country. This is because women prioritize social welfare, like healthcare, childcare, and education, which strengthen democratic institutions. The amount of women in parliament is my explanatory variable of interest. It is measured in the dataset as in the coumn labeled "Lower chamber female legislators". The numbers in this variable count the number of female legislators in a given country over time. The electoral democratic index is my outcome variable of interest. It is measured on a 0 to 1 scale with 0 being the least democratic and 1 being the most democratic in a given country over time.
+
+```{r}
+library(readr)
+women_in_power <- read_csv("data/share-of-women-in-parliament.csv") |>
+  head()
+women_in_power
+dem_index <- read_csv("data/electoral-democracy-index.csv") |>
+  head()
+dem_index
+```
+
+
+
+
+
+
