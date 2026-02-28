@@ -9,28 +9,24 @@ output:
 
 
 
-## Project thoughts
+## Project Thoughts
 
 I am interested in exploring data related to gender equality and how it correlates with regime type.
-Maybe I could look at women education levels compared to men, or even women's suffrage in different countries. Potentially, I could look at how women in power or participating in government/politics contribute to democracy.
+Maybe I could look at women education levels compared to men, or even women's suffrage in different countries. Potentially, I could look at how women in power or participating in government/politics contributes to democracy.
 
 
-## Research Question
+## Research Question & Proposal Paragraph
 
-Do high levels of female political participation make countries more democratic? As the number of women in a country's parliament increases, the electoral democratic index increases in that given country. This is because women prioritize social welfare, like healthcare, childcare, and education, which strengthen democratic institutions. The amount of women in parliament is my explanatory variable of interest. It is measured in the dataset as in the coumn labeled "Lower chamber female legislators". The numbers in this variable count the number of female legislators in a given country over time. The electoral democratic index is my outcome variable of interest. It is measured on a 0 to 1 scale with 0 being the least democratic and 1 being the most democratic in a given country over time.
+Do high percentages of women in political positions of power increase electoral democracy? As the percentage of women in a country's parliament increases, the electoral democracy index increases in a given country. This could be because as women hold political positions of power, they are diversifying representation and participation, and prioritizing social welfare. As representation, participation, and social welfare increases, electoral democracy increases in a given country because it encourages voter engagement and equity as women in parliament act as descriptive and substantive representatives for other women. The amount of women in parliament is my explanatory variable of interest. It is measured in the data set "women_in_power" in the column labeled "Lower chamber female legislators". The numbers in this variable show the percentage of female legislators within parliament in a given country. The electoral democratic index is my outcome variable of interest. It is measured in the data set "dem_index" in the column labeled "Electoral Democracy Index". The electoral democracy index is measured on a 0 to 1 scale with 0 being the least democratic and 1 being the most democratic in a given country. One observed pattern across data sets that would support my hypothesis could be the fact that in most countries, as the number of women in parliament increases, the electoral democratic index increases. One observed pattern that would disprove my hypothesis is that some countries have high percentages of females in parliament, but continue to have low scores on the electoral democracy index. For example, females in Rwanda have recently made up around 60% of its parliament, but the electoral democracy index in Rwanda remains low at around 0.2. This could be because quotas were established in Rwanda after the genocide in order to regain political stability as the country's population was mostly women. With this in mind, one thing that could disprove my hypothesis could be the establishment of quotas that require a percentage of parliament seats to be given to women.
 
 ```{r}
 library(readr)
-women_in_power <- read_csv("data/share-of-women-in-parliament.csv") |>
+women_in_power <- read_csv("data/share-of-women-in-parliament.csv")
+women_in_power |>
   head()
-women_in_power
-dem_index <- read_csv("data/electoral-democracy-index.csv") |>
+dem_index <- read_csv("data/electoral-democracy-index.csv")
+dem_index |>
   head()
-dem_index
 ```
-
-
-
-
 
 
