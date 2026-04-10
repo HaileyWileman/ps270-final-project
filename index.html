@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/electoral-democracy-index.csv","data/electoral-democracy-index.metadata.json","data/readme copydemocracy.md","data/readme.md","data/share-of-women-in-parliament.csv","data/share-of-women-in-parliament.metadata.json","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/electoral-democracy-index.csv","data/electoral-democracy-index.metadata.json","data/readme copydemocracy.md","data/readme.md","data/share-of-women-in-parliament.csv","data/share-of-women-in-parliament.metadata.json","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-11-1.png","index_files/figure-html5/unnamed-chunk-12-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1548,8 +1548,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>I am interested in exploring data related to gender equality and how it correlates with regime type.
 Maybe I could look at women education levels compared to men, or even women’s suffrage in different countries. Potentially, I could look at how women in power or participating in government/politics contributes to democracy.</p>
 <h2 id="project-milestone-2-research-question-proposal-paragraph">Project Milestone #2 ~ Research Question &amp; Proposal Paragraph</h2>
+<h1 id="proposal">Proposal</h1>
 <p>Do high percentages of women in political positions of power increase electoral democracy? As the percentage of women in a country’s parliament increases, the electoral democracy index increases in a given country. This could be because as women hold political positions of power, they are diversifying representation and participation, and prioritizing social welfare. As representation, participation, and social welfare increases, electoral democracy increases in a given country because it encourages voter engagement and equity as women in parliament act as descriptive and substantive representatives for other women. The amount of women in parliament is my explanatory variable of interest. It is measured in the data set “women_in_power” in the column labeled “Lower chamber female legislators”. The numbers in this variable show the percentage of female legislators within parliament in a given country. The electoral democratic index is my outcome variable of interest. It is measured in the data set “dem_index” in the column labeled “Electoral Democracy Index”. The electoral democracy index is measured on a 0 to 1 scale with 0 being the least democratic and 1 being the most democratic in a given country. One observed pattern across data sets that would support my hypothesis could be the fact that in most countries, as the number of women in parliament increases, the electoral democratic index increases. One observed pattern that would disprove my hypothesis is that some countries have high percentages of females in parliament, but continue to have low scores on the electoral democracy index. For example, females in Rwanda have recently made up around 60% of its parliament, but the electoral democracy index in Rwanda remains low at around 0.2. This could be because quotas were established in Rwanda after the genocide in order to regain political stability as the country’s population was mostly women. With this in mind, one thing that could disprove my hypothesis could be the establishment of quotas that require a percentage of parliament seats to be given to women.</p>
-<h2 id="project-milestone-2-taking-an-initial-look-at-the-data">Project Milestone #2 ~ Taking an Initial Look at the Data</h2>
+<h1 id="taking-an-initial-look-at-the-data">Taking an Initial Look at the Data</h1>
 <p>I am looking initially at two separate data sets produced by V-Dem (Varieties of Democracy), and will merge the data sets together when I begin to look at the variables comparatively in more detail. The “women_in_power” data set measures the percentage of women in parliament in a given country across time. The “dem_index” data set measures the electoral democracy index score assigned by V-Dem to a given country across time.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1587,6 +1588,7 @@ Maybe I could look at women education levels compared to men, or even women’s 
 #   ²​`World region according to OWID`</code></pre>
 </div>
 <h2 id="project-milestone-3-one-data-visualization-wrangling">Project Milestone #3 ~ One Data Visualization &amp; Wrangling</h2>
+<h1 id="some-data-wrangling">Some Data Wrangling</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Started by joining the data sets together, and did some data wrangling</span></span>
@@ -1597,6 +1599,7 @@ Maybe I could look at women education levels compared to men, or even women’s 
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<h1 id="data-visualization">Data Visualization</h1>
 <p>I then created a graph by looking at how the percentage of female legislators in a country across time compared to the electoral democracy index (assigned by V-Dem).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1617,9 +1620,155 @@ Maybe I could look at women education levels compared to men, or even women’s 
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" alt="" width="624" /></p>
 </div>
-<h2 id="for-my-own-interest-expanding-further">For my Own Interest ~ Expanding Further:</h2>
-<h1 id="looking-at-averages-of-each-country-instead-of-throughout-time">Looking at averages of each country instead of throughout time</h1>
-<p>Instead of looking at multiple points for each country (because each dot is a specific year), I want take a look at the averages of each country for female legislators and electoral democracy index scores, and see if there is a relationship there.</p>
+<h2 id="project-milestone-4-visualization-analysis">Project Milestone #4 ~ Visualization &amp; Analysis</h2>
+<h1 id="discussion-of-potential-confounders">Discussion of Potential Confounders</h1>
+<p>One thing that could be contributing to the percentage of lower chamber female legislators in certain countries could be the fact that some countries have electoral quotas or reserved seats. This could be a potential confounder as it is contributing to the amount of female legislators int he country, and it could cause the electoral democracy index to rise as more females are being descriptively represented by their legislators.</p>
+<p>In this milestone, I want to run linear regressions and create data visualizations that show the difference between my two variables of interest when countries with quotas are factored in, and when countries with quotas are removed from the model.</p>
+<h1 id="linear-regression-of-all-countries">Linear Regression Of All Countries</h1>
+<p>First, a linear regression and interpretation of all countries:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Linear regression of all the countries called "total_regression"</span></span>
+<span><span class='va'>total_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>`Electoral Democracy Index`</span> <span class='op'>~</span> <span class='va'>`Lower chamber female legislators`</span>, data <span class='op'>=</span> <span class='va'>women_dem_index</span><span class='op'>)</span></span>
+<span><span class='va'>total_regression</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = `Electoral Democracy Index` ~ `Lower chamber female legislators`, 
+    data = women_dem_index)
+
+Coefficients:
+                       (Intercept)  
+                           0.31787  
+`Lower chamber female legislators`  
+                           0.00644  </code></pre>
+</div>
+<p>This means that the linear model predicts that when there is 0 percentage points of female legislators, then the model predicts that the average electoral democracy index score is 0.31787 percentage points.</p>
+<p>This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by 0.00644 percentage points.</p>
+<p>In terms of my research question, this means that as the percentage of female legislators increases, the electoral democracy index score also increases.</p>
+<h1 id="linear-regression-visualization-after-removing-confounders">Linear Regression &amp; Visualization After Removing Confounders</h1>
+<p>In order to remove confounders, I had to figure out which countries have electoral quotas in the first place. This includes over 130 countries according to the International IDEA database. Using their database, I began figuring out which countries do not have gender quotas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Filtering out the countries that do not have gender electoral quotas and calling it "no_quotas", this will be the countries that do not have ANY gender electoral quotas</span></span>
+<span><span class='va'>no_quotas</span> <span class='op'>&lt;-</span> <span class='va'>women_dem_index</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Afghanistan"</span><span class='op'>|</span> <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Azerbaijan"</span> <span class='op'>|</span> </span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"The Bahamas"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Bahrain"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Barbados"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Belarus"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Belize"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Brunei"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Bulgaria"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Burma"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Cambodia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Cuba"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Democratic Republic of Congo"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Denmark"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Dominica"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Estonia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Ethiopia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Fiji"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Finland"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"The Gambia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Georgia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Grenada"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Iran"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Jamaica"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Kiribati"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Kuwait"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Laos"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Latvia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Lebanon"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Liechtenstein"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Madagascar"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Marshall Islands"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Nauru"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Nigeria"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Niue"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"North Macedonia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Oman"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Palau"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Qatar"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Russia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Saint Kitts and Nevis"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Saint Lucia"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Saint Vincent and the Grenadines"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Seychelles"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Singapore"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Syria"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Tajikistan"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Tonga"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Trinidad and Tobago"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Turkmenistan"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Tuvalu"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"United States"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Yemen"</span> <span class='op'>|</span></span>
+<span>    <span class='va'>`Entity`</span> <span class='op'>==</span> <span class='st'>"Zambia"</span><span class='op'>)</span></span>
+<span><span class='va'>no_quotas</span></span></code></pre>
+</div>
+<pre><code># A tibble: 3,129 × 5
+   Entity       Year Lower chamber female leg…¹ Electoral Democracy …²
+   &lt;chr&gt;       &lt;dbl&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;
+ 1 Afghanistan  1923                          0                  0.038
+ 2 Afghanistan  1924                          0                  0.114
+ 3 Afghanistan  1925                          0                  0.111
+ 4 Afghanistan  1926                          0                  0.111
+ 5 Afghanistan  1927                          0                  0.111
+ 6 Afghanistan  1928                          0                  0.111
+ 7 Afghanistan  1929                          0                  0.106
+ 8 Afghanistan  1930                          0                  0.103
+ 9 Afghanistan  1931                          0                  0.116
+10 Afghanistan  1932                          0                  0.085
+# ℹ 3,119 more rows
+# ℹ abbreviated names: ¹​`Lower chamber female legislators`,
+#   ²​`Electoral Democracy Index`
+# ℹ 1 more variable: `World region according to OWID` &lt;chr&gt;</code></pre>
+</div>
+<p>Now, I will run a linear regression using the countries that do not have ANY gender electoral quotas.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Running a linear regression with the countries that don't have quotas</span></span>
+<span><span class='va'>no_quota_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>`Electoral Democracy Index`</span> <span class='op'>~</span> <span class='va'>`Lower chamber female legislators`</span>, data <span class='op'>=</span> <span class='va'>no_quotas</span><span class='op'>)</span></span>
+<span><span class='va'>no_quota_regression</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = `Electoral Democracy Index` ~ `Lower chamber female legislators`, 
+    data = no_quotas)
+
+Coefficients:
+                       (Intercept)  
+                          0.270663  
+`Lower chamber female legislators`  
+                          0.004347  </code></pre>
+</div>
+<p>This means that the linear model predicts that when there is 0 percentage points of female legislators, the average electoral democracy index score is 0.270663 percentage points.</p>
+<p>This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by 0.004347 percentage points.</p>
+<p>In terms of my research question, this means that once again as the percentage of female legislators increases, the electoral democracy index score also increases.</p>
+<p>Now, I want visualize the countries that have no electoral quotas through a graph.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>no_quota_graph</span> <span class='op'>&lt;-</span> <span class='va'>no_quotas</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>`Lower chamber female legislators`</span>,</span>
+<span>             y <span class='op'>=</span> <span class='va'>`Electoral Democracy Index`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.25</span>, color <span class='op'>=</span> <span class='st'>"dodgerblue2"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, color <span class='op'>=</span> <span class='st'>"indianred3"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>ylim</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Lower chamber female legislators (%)"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Electoral democracy index (0 to 1)"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"The Relationship Between Female Legislators and Electoral Democracy Index"</span>,</span>
+<span>    caption <span class='op'>=</span> <span class='st'>"Source: Varieties of Democracy (V-Dem)"</span>,</span>
+<span>    fill <span class='op'>=</span> <span class='st'>"World Region According to OWID"</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='va'>no_quota_graph</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" alt="" width="624" /></p>
+</div>
+<p>This helps to show the positive correlation between percentages of female legislators and electoral democracy index scores.</p>
+<h1 id="looking-at-the-averages-of-each-country">Looking at the Averages of Each Country</h1>
+<p>This data set shows the changes of percentage of female legislators and electoral democracy index score throughout time. Instead, let’s look at the average percentage of female legislators and the electoral democracy index score per country, and see if there is still a positive correlation.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Finding averages for female legislators across countries</span></span>
@@ -1634,374 +1783,9 @@ Maybe I could look at women education levels compared to men, or even women’s 
 <span></span>
 <span><span class='co'>## Joining these two data sets together in order to create graph</span></span>
 <span><span class='va'>avg_wdi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>avg_female_legs</span>, <span class='va'>avg_edi</span>, <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join_by.html'>join_by</a></span><span class='op'>(</span><span class='st'>"Entity"</span> <span class='op'>==</span> <span class='st'>"Entity"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>avg_wdi</span></span></code></pre>
-</div>
-<pre><code>                            Entity Lower chamber female legislators
-1                      Afghanistan                        5.7845000
-2                          Albania                       14.3487879
-3                          Algeria                        4.1975238
-4                           Angola                       18.3229808
-5                        Argentina                       11.9834951
-6                          Armenia                       16.9791579
-7                        Australia                        7.1476613
-8                          Austria                       14.7236559
-9                       Azerbaijan                       15.1656604
-10                         Bahrain                        5.5000000
-11                      Bangladesh                        5.7738636
-12                        Barbados                        5.1277273
-13                         Belarus                       18.3305660
-14                         Belgium                       10.9677672
-15                           Benin                        5.5906563
-16                          Bhutan                        3.9275000
-17                         Bolivia                        8.9440187
-18          Bosnia and Herzegovina                       11.1915054
-19                        Botswana                        6.4625625
-20                          Brazil                        3.3444144
-21                        Bulgaria                       12.3667797
-22                    Burkina Faso                        6.6847963
-23                         Burundi                       21.1351429
-24                        Cambodia                       11.3258571
-25                        Cameroon                       13.1331562
-26                          Canada                        7.5544000
-27                      Cape Verde                       16.2370638
-28        Central African Republic                        5.3664727
-29                            Chad                        5.7948529
-30                           Chile                        6.2402000
-31                           China                       18.2565385
-32                        Colombia                        5.4066387
-33                         Comoros                        3.0479375
-34                           Congo                        6.5983433
-35                      Costa Rica                       10.6683607
-36                   Cote d&#39;Ivoire                        5.6012078
-37                         Croatia                       15.0158750
-38                            Cuba                       17.4600000
-39                          Cyprus                        6.6518462
-40                         Czechia                       15.7750000
-41    Democratic Republic of Congo                        5.8891296
-42  Democratic Republic of Vietnam                        5.0500000
-43                         Denmark                       16.4265854
-44                        Djibouti                        4.6712658
-45              Dominican Republic                        8.2898246
-46                    East Germany                       28.8690476
-47                      East Timor                       33.4104545
-48                         Ecuador                        8.1307273
-49                           Egypt                        3.6456436
-50                     El Salvador                        7.1025664
-51               Equatorial Guinea                       10.1311186
-52                         Eritrea                        9.1904762
-53                         Estonia                       17.8631731
-54                        Eswatini                        6.0496607
-55                        Ethiopia                        9.8570267
-56                            Fiji                        2.5582692
-57                         Finland                       20.3800000
-58                          France                        7.3180672
-59                           Gabon                        7.6135190
-60                          Gambia                        2.5368512
-61                         Georgia                       14.5263810
-62                         Germany                       17.0605882
-63                           Ghana                        7.8613846
-64                          Greece                        5.3963107
-65                       Guatemala                        4.1919658
-66                          Guinea                       13.1850000
-67                   Guinea-Bissau                       12.5391837
-68                          Guyana                       12.6987273
-69                           Haiti                        2.4512621
-70                        Honduras                        8.9570270
-71                       Hong Kong                        5.9560000
-72                         Hungary                       12.6828302
-73                         Iceland                       14.3501961
-74                           India                        4.5559836
-75                       Indonesia                       10.2545000
-76                            Iran                        2.0945794
-77                            Iraq                        8.1712644
-78                         Ireland                        5.7587200
-79                          Israel                       10.2028090
-80                           Italy                        7.8993548
-81                         Jamaica                        6.6759223
-82                           Japan                        2.7840000
-83                          Jordan                        2.8200000
-84                      Kazakhstan                       16.6012264
-85                           Kenya                        3.6343846
-86                          Kosovo                       32.7418182
-87                          Kuwait                        1.5869231
-88                      Kyrgyzstan                       15.1869811
-89                            Laos                       11.7795313
-90                          Latvia                       20.5808989
-91                         Lebanon                        1.1204854
-92                         Lesotho                        9.4960448
-93                         Liberia                        2.9256333
-94                           Libya                        3.9578125
-95                       Lithuania                       19.0151042
-96                      Luxembourg                       12.4837500
-97                      Madagascar                        5.9682740
-98                          Malawi                        5.5950424
-99                        Malaysia                        6.0141096
-100                       Maldives                        3.9608955
-101                           Mali                        6.6226984
-102                          Malta                        7.4250820
-103                     Mauritania                        6.5192063
-104                      Mauritius                        6.4744675
-105                         Mexico                       10.0358678
-106                        Moldova                       19.3871739
-107                       Mongolia                       11.8239604
-108                     Montenegro                       18.4547368
-109                        Morocco                        6.9760000
-110                     Mozambique                       25.7592500
-111                        Myanmar                        2.5662963
-112                        Namibia                       10.2072165
-113                          Nepal                       11.1315517
-114                    Netherlands                       15.0189076
-115                    New Zealand                       11.3840000
-116                      Nicaragua                        9.5106780
-117                          Niger                        6.6178367
-118                        Nigeria                        4.8852593
-119                    North Korea                       16.9396104
-120                North Macedonia                       12.5359259
-121                         Norway                       16.6100826
-122                           Oman                        1.3504762
-123                       Pakistan                        6.3622727
-124                         Panama                        5.1992241
-125               Papua New Guinea                        0.7768919
-126                       Paraguay                        3.8991150
-127                           Peru                        8.1965686
-128                    Philippines                        7.1130973
-129                         Poland                       13.7624242
-130                       Portugal                        8.9228448
-131                          Qatar                        2.9847368
-132            Republic of Vietnam                        0.9000000
-133                        Romania                       10.2886555
-134                         Russia                       15.3491429
-135                         Rwanda                       28.9268000
-136          Sao Tome and Principe                       11.8135192
-137                   Saudi Arabia                       10.8409091
-138                        Senegal                       13.4681392
-139                         Serbia                       10.5676522
-140                     Seychelles                       18.2027761
-141                   Sierra Leone                        8.1805349
-142                      Singapore                        5.2616260
-143                       Slovakia                       15.6435000
-144                       Slovenia                       12.4967010
-145                Solomon Islands                        1.1203175
-146                        Somalia                        8.4606383
-147                   South Africa                       10.0010328
-148                    South Korea                        6.4690909
-149                    South Sudan                       12.3976786
-150                          Spain                       10.8354867
-151                      Sri Lanka                        2.7878400
-152                          Sudan                       10.1742000
-153                       Suriname                       10.3127143
-154                         Sweden                       19.0932800
-155                    Switzerland                        9.1456800
-156                          Syria                        5.4379310
-157                         Taiwan                       19.2387467
-158                     Tajikistan                       15.7972642
-159                       Tanzania                       18.4235000
-160                       Thailand                        5.2297368
-161                           Togo                        6.7861385
-162            Trinidad and Tobago                       12.5271429
-163                        Tunisia                       11.1421538
-164                         Turkey                        3.5773684
-165                   Turkmenistan                       17.7596190
-166                         Uganda                       10.3591809
-167                        Ukraine                       19.0710127
-168           United Arab Emirates                       10.2777778
-169                 United Kingdom                        7.6510400
-170                  United States                        6.0160800
-171                        Uruguay                        4.8210619
-172                     Uzbekistan                       19.0221739
-173                        Vanuatu                        1.4232000
-174                      Venezuela                        5.5970435
-175                        Vietnam                       24.3524490
-176                   West Germany                        8.6571429
-177                          Yemen                        0.4104545
-178            Yemen Arab Republic                        0.4352941
-179        Yemen People&#39;s Republic                        3.6731707
-180                         Zambia                        5.3798687
-181                       Zimbabwe                        6.2103760
-    Electoral Democracy Index
-1                  0.14998750
-2                  0.27470707
-3                  0.15316190
-4                  0.17071154
-5                  0.55233981
-6                  0.23918947
-7                  0.83020968
-8                  0.81390323
-9                  0.14516038
-10                 0.13217143
-11                 0.24348864
-12                 0.46236364
-13                 0.16958491
-14                 0.72326724
-15                 0.37779687
-16                 0.18154167
-17                 0.36084112
-18                 0.25951613
-19                 0.62375000
-20                 0.44196396
-21                 0.32833898
-22                 0.40368519
-23                 0.22183333
-24                 0.22572857
-25                 0.23875000
-26                 0.72665600
-27                 0.62802128
-28                 0.26678182
-29                 0.20498529
-30                 0.55688000
-31                 0.08869231
-32                 0.37804202
-33                 0.31995833
-34                 0.20014925
-35                 0.62267213
-36                 0.27381818
-37                 0.34562500
-38                 0.21904854
-39                 0.69132308
-40                 0.53484000
-41                 0.22655556
-42                 0.22840000
-43                 0.84889431
-44                 0.16940506
-45                 0.34256140
-46                 0.18040476
-47                 0.64840909
-48                 0.43000909
-49                 0.16673267
-50                 0.27446903
-51                 0.14584746
-52                 0.10795238
-53                 0.42962500
-54                 0.13692857
-55                 0.14268000
-56                 0.32474038
-57                 0.70927200
-58                 0.73731092
-59                 0.24027848
-60                 0.23644628
-61                 0.23460000
-62                 0.64304412
-63                 0.55017308
-64                 0.59624272
-65                 0.27241026
-66                 0.18535385
-67                 0.28075510
-68                 0.33610909
-69                 0.21533010
-70                 0.34518919
-71                 0.20274400
-72                 0.37778302
-73                 0.78300000
-74                 0.42997541
-75                 0.36321250
-76                 0.13771028
-77                 0.18082759
-78                 0.75621600
-79                 0.62741573
-80                 0.57466935
-81                 0.45350485
-82                 0.57222400
-83                 0.16613095
-84                 0.15756604
-85                 0.20647009
-86                 0.63618182
-87                 0.28771154
-88                 0.18916038
-89                 0.15395312
-90                 0.36232584
-91                 0.33480583
-92                 0.32065672
-93                 0.28047500
-94                 0.12325000
-95                 0.39505208
-96                 0.85641250
-97                 0.29313699
-98                 0.19398305
-99                 0.28608219
-100                0.24137313
-101                0.34355556
-102                0.74236066
-103                0.27290476
-104                0.60575325
-105                0.32437190
-106                0.27854348
-107                0.31647525
-108                0.49615789
-109                0.20912727
-110                0.28705769
-111                0.25162963
-112                0.27544330
-113                0.29762069
-114                0.75639496
-115                0.83103200
-116                0.24816102
-117                0.38091837
-118                0.46885185
-119                0.08642857
-120                0.24025926
-121                0.77133058
-122                0.16761905
-123                0.22870455
-124                0.40542241
-125                0.42800000
-126                0.29897345
-127                0.42561765
-128                0.32792920
-129                0.44385859
-130                0.45086207
-131                0.05057895
-132                0.30522222
-133                0.32821008
-134                0.17783810
-135                0.20150909
-136                0.48588462
-137                0.01740909
-138                0.48902532
-139                0.22039130
-140                0.32638806
-141                0.37213953
-142                0.24968293
-143                0.51705000
-144                0.37421649
-145                0.44768254
-146                0.20495745
-147                0.33154098
-148                0.50084416
-149                0.17594643
-150                0.46209735
-151                0.43836800
-152                0.18766000
-153                0.63287143
-154                0.74308000
-155                0.72581600
-156                0.15157471
-157                0.38364000
-158                0.14200000
-159                0.35856667
-160                0.26240789
-161                0.26203077
-162                0.57551190
-163                0.27790769
-164                0.33517544
-165                0.11587619
-166                0.18808511
-167                0.26929114
-168                0.04466667
-169                0.75111200
-170                0.67472000
-171                0.66648673
-172                0.13426087
-173                0.65344000
-174                0.35117391
-175                0.15659184
-176                0.85071429
-177                0.20861364
-178                0.11100000
-179                0.09951220
-180                0.25336364
-181                0.24331200</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Creates nice looking table of what "avg_wdi"</span></span>
+<span></span>
+<span></span>
+<span><span class='co'>## Creates nice looking table of what "avg_wdi"</span></span>
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>avg_wdi</span><span class='op'>)</span></span></code></pre>
 </div>
 <table style="width:100%;">
@@ -2926,7 +2710,7 @@ Maybe I could look at women education levels compared to men, or even women’s 
 </tbody>
 </table>
 </div>
-<p>I want to create a graph looking at the averages of both variables for each country, and see if there is still a positive correlation.</p>
+<p>Now, visualizing this tibble in a graph.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Making a graph called "avg_wdi_plot" which takes the table created above and puts it into graph form</span></span>
@@ -2944,8 +2728,30 @@ Maybe I could look at women education levels compared to men, or even women’s 
 <span>  <span class='op'>)</span></span>
 <span><span class='va'>avg_wdi_plot</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" alt="" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-9-1.png" alt="" width="624" /></p>
 </div>
+<p>There still is a positive correlation (just a little less obvious than before).</p>
+<p>Running a linear regression to get some concrete numbers:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>avg_wdi_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>`Electoral Democracy Index`</span> <span class='op'>~</span> <span class='va'>`Lower chamber female legislators`</span>, data <span class='op'>=</span> <span class='va'>avg_wdi</span><span class='op'>)</span></span>
+<span><span class='va'>avg_wdi_regression</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = `Electoral Democracy Index` ~ `Lower chamber female legislators`, 
+    data = avg_wdi)
+
+Coefficients:
+                       (Intercept)  
+                           0.32926  
+`Lower chamber female legislators`  
+                           0.00316  </code></pre>
+</div>
+<p>This means that the linear model predicts that when there is 0 percentage points of female legislators, the average electoral democracy index score is 0.32926 percentage points.</p>
+<p>This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by 0.00316 percentage points.</p>
+<p>In terms of my research question, this means that once again as the percentage of female legislators increases, the electoral democracy index score also increases.</p>
+<h2 id="for-my-own-interest-expanding-further">For my Own Interest ~ Expanding Further:</h2>
 <h1 id="looking-at-the-variables-across-different-regions">Looking at the variables across different regions:</h1>
 Asia:
 <div class="layout-chunk" data-layout="l-body">
@@ -2961,7 +2767,7 @@ Asia:
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, color <span class='op'>=</span> <span class='st'>"indianred3"</span><span class='op'>)</span></span>
 <span><span class='va'>wdi_plot_asia</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" alt="" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-11-1.png" alt="" width="624" /></p>
 </div>
 Europe:
 <div class="layout-chunk" data-layout="l-body">
@@ -2977,11 +2783,9 @@ Europe:
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, color <span class='op'>=</span> <span class='st'>"indianred3"</span><span class='op'>)</span></span>
 <span><span class='va'>wdi_plot_euro</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" alt="" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-12-1.png" alt="" width="624" /></p>
 </div>
-<h2 id="a-note-for-the-future">A Note for the Future:</h2>
-<p>Remove countries that have electoral quotas, and see if there is still a positive correlation as quotas could be a potential confounder.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
