@@ -1,32 +1,37 @@
 ---
-title: "PS270 Final Project"
+title: "Do high percentages of women in political positions of power increase electoral democracy?"
 author: "Hailey Wileman"
-description: "My final project"
+description: A look into the relationship between percentages of female legislators and electoral democracy index scores.
 output:
   distill::distill_article:
     self_contained: false
 ---
 
-
-
-## Project Milestone #1 ~ Project Thoughts:
-
-I am interested in exploring data related to gender equality and how it correlates with regime type.
-Maybe I could look at women education levels compared to men, or even women's suffrage in different countries. Potentially, I could look at how women in power or participating in government/politics contributes to democracy.
-
-
-## Project Milestone #2 ~ Research Question & Proposal Paragraph
-
-# Proposal
-
-Do high percentages of women in political positions of power increase electoral democracy? As the percentage of women in a country's parliament increases, the electoral democracy index increases in a given country. This could be because as women hold political positions of power, they are diversifying representation and participation, and prioritizing social welfare. As representation, participation, and social welfare increases, electoral democracy increases in a given country because it encourages voter engagement and equity as women in parliament act as descriptive and substantive representatives for other women. The amount of women in parliament is my explanatory variable of interest. It is measured in the data set "women_in_power" in the column labeled "Lower chamber female legislators". The numbers in this variable show the percentage of female legislators within parliament in a given country. The electoral democratic index is my outcome variable of interest. It is measured in the data set "dem_index" in the column labeled "Electoral Democracy Index". The electoral democracy index is measured on a 0 to 1 scale with 0 being the least democratic and 1 being the most democratic in a given country. One observed pattern across data sets that would support my hypothesis could be the fact that in most countries, as the number of women in parliament increases, the electoral democratic index increases. One observed pattern that would disprove my hypothesis is that some countries have high percentages of females in parliament, but continue to have low scores on the electoral democracy index. For example, females in Rwanda have recently made up around 60% of its parliament, but the electoral democracy index in Rwanda remains low at around 0.2. This could be because quotas were established in Rwanda after the genocide in order to regain political stability as the country's population was mostly women. With this in mind, one thing that could disprove my hypothesis could be the establishment of quotas that require a percentage of parliament seats to be given to women.
-
-# Taking an Initial Look at the Data
-
-I am looking initially at two separate data sets produced by V-Dem (Varieties of Democracy), and will merge the data sets together when I begin to look at the variables comparatively in more detail. The "women_in_power" data set measures the percentage of women in parliament in a given country across time. The "dem_index" data set measures the electoral democracy index score assigned by V-Dem to a given country across time.
-
-```{r}
+```{r, include = FALSE}
+library(tidyverse)
+library(ggplot2)
 library(readr)
+library(knitr)
+library(infer)
+library(broom)
+```
+ 
+
+## Introduction
+
+There are many "building blocks" that go into the construction of a democracy. Some of these blocks are things like free and fair elections, citizen participation, and protections from the government. Perhaps the instructions on how to build strong electoral democracies lies in something as simple as gender. **Do high percentages of women in political positions of power increase electoral democracy?** I hypothesize that **as the percentage of women in a country's parliament increases, the electoral democracy index score increases in a given country.** I find that this could be accurate because as women hold political positions of power, they are diversifying representation and participation, and prioritizing social welfare. If this is true then as these dynamics increase, electoral democracy increases in a given country because it encourages voter engagement and equity as women in parliament act as descriptive and substantive representatives for other women.
+
+The percentage of **women in parliament** is my *explanatory variable* of interest. It is measured in the data set `women_in_power` in the column labeled `Lower chamber female legislators`. The numbers in this variable show the percentage of female legislators within parliament in a given country. The **electoral democratic index** is my *outcome variable* of interest. It is measured in the data set `dem_index` in the column labeled `Electoral Democracy Index`. The electoral democracy index is measured on a 0 to 1 scale with 0 being the least democratic and 1 being the most democratic.
+
+An initial observed pattern across data sets that would support my hypothesis could be the fact that in most countries, as the number of women in parliament increases, the electoral democratic index increases. One initial observed pattern that would disprove my hypothesis is that some countries have high percentages of females in parliament, but continue to have low scores on the electoral democracy index. This could prove the null hypothesis (higher percentages of women in parliament have no effect on electoral democracy scores) to be true.
+
+I find researching this question on whether gender can improve electoral democracy scores to be important because it can help to understand different avenues to take when it comes to building strong democracies. It has additionally always been interesting to me that many countries often have male-dominated politics. While I can't say that this is solely because female political candidates are, well female, the empirical evidence still continues to show that women are underrepresented in political positions of power, especially here in the U.S. If my hypothesis is accurate, this could also show evidence on potential reasons why women in political positions of power can truly be a good thing.
+
+## Data Section
+
+The data sources I used for this project comes from the website *Our World in Data*, and the data itself was produced by **Varieties of Democracy (V-Dem)**. I used two separate data sets from V-Dem. One of them showed the changes in percentages of women in parliament in different countries across different years. This data set was named by V-Dem as "share-of-women-in-parliament.csv", but I renamed it to `women_in_power` so it would be easier to work with. The second data set I used from V-Dem was one that showed the electoral democracy index scores in a given country throughout time. This data set was named by V-Dem as "electoral-democracy-index.csv", but I renamed it `dem_index` so it would be easier to work with. Since my explanatory variable is within the `women_in_power` data set and my outcome variable is located within the `dem_index` data set I merged the two together. I renamed the newly merged data set as `women_dem_index`.
+
+```{r, include = FALSE}
 women_in_power <- read_csv("data/share-of-women-in-parliament.csv")
 women_in_power |>
   head()
@@ -35,12 +40,7 @@ dem_index |>
   head()
 ```
 
-
-## Project Milestone #3 ~ One Data Visualization & Wrangling
-
-# Some Data Wrangling
-
-```{r}
+```{r include = FALSE}
 ## Started by joining the data sets together, and did some data wrangling
 library(tidyverse)
 women_dem_index <- left_join(women_in_power, dem_index, 
@@ -49,11 +49,37 @@ women_dem_index <- left_join(women_in_power, dem_index,
   na.omit()
 ```
 
-# Data Visualization
+The explanatory variable (`Lower chamber female legislators`) is measured by V-Dem through mathematical calculations. They have taken the amount of female legislators in a country and divided it by the total amount of legislators. They have done this for multiple countries throughout different years. The outcome variable (`Electoral Democracy Index`) is measured by V-Dem using thousands of coding experts to assign electoral democracy index values to countries.
 
-I then created a graph by looking at how the percentage of female legislators in a country across time compared to the electoral democracy index (assigned by V-Dem).
+My null hypothesis is that the percentage of women in parliament has no effect on electoral democracy index scores. My alternative hypothesis is that the percentage of women in parliament has an effect on electoral democracy index scores. My criteria for rejecting the null is if the p-value is less than or equal to an $\alpha$ of 0.05. My criteria for retaining the null is if the p-value is greater than an $\alpha$ of 0.05.
 
-```{r}
+The following graph depicts my main outcome variable of interest.
+
+```{r include = FALSE}
+dem_plot <- dem_index |>
+  ggplot(aes(x = `Electoral Democracy Index`)) +
+  geom_histogram() +
+  labs(
+    x = "Electoral Democracy Index (0 to 1)",
+    y = "Count",
+    title = "Electoral Democracy Index Scores"
+  ) +
+  theme_minimal()
+dem_plot
+```
+
+```{r echo = FALSE}
+dem_plot
+```
+
+
+## Results Section
+
+### Plot and Interpretation of the Main Relationship of Interest
+
+I created a scatter plot graph with `Lower chamber female legislators` on the x-axis, and `Electoral Democracy Index` on the y-axis. I additionally assigned different colors for different regions which were assigned by *Our World in Data*. I added lines based on the linear model of each region using the function `geom_smooth()`. I called this graph of all the countries in the data set over time `wdi_plot`.
+
+```{r include = FALSE}
 ## Makes a graph called "wdi_plot" that shows the relationship between my two variables of interest
 wdi_plot <- ggplot(women_dem_index, aes(x = `Lower chamber female legislators`, y = `Electoral Democracy Index`,
                                         color = `World region according to OWID`)) +
@@ -63,143 +89,47 @@ wdi_plot <- ggplot(women_dem_index, aes(x = `Lower chamber female legislators`, 
   labs(
     x = "Lower chamber female legislators (%)",
     y = "Electoral democracy index (0 to 1)",
-    title = "The Relationship Between Female Legislators and Electoral Democracy Index",
+    title = "The Relationship Between Female Legislators and Electoral Democracy",
     caption = "Source: Varieties of Democracy (V-Dem)",
     fill = "World Region According to OWID"
   )
 wdi_plot
 ```
 
+```{r echo = FALSE}
+## Plot of main analysis
+wdi_plot
+```
 
-## Project Milestone #4 ~ Visualization & Analysis
+When looking at the points in the graph, one can tell that typically as the percentage of lower chamber female legislators increases, electoral democracy index scores slowly increase. This isn't overly clear, so I added lines to the graph that represented the linear model of the outcome and explanatory variable per region. Looking at the lines, the effect that women in parliament has on electoral democracy becomes much clearer. This trend is particularly strong in South America, depicted in the color pink, and Africa, depicted in the color red. The positive effect is slightly weaker in regions such as Asia, depicted in yellow, and Europe, depicted in green. Looking at the linear model lines, this trend is consistent with the alternative hypothesis. The percentage of lower chamber female legislators has some sort of effect on electoral democracy index scores. In fact, looking at the regional linear model lines specifically, the effect is always positive.
 
-# Discussion of Potential Confounders
+### Regression Output of the Main Relationship
 
-One thing that could be contributing to the percentage of lower chamber female legislators in certain countries could be the fact that some countries have electoral quotas or reserved seats. This could be a potential confounder as it is contributing to the amount of female legislators int he country, and it could cause the electoral democracy index to rise as more females are being descriptively represented by their legislators.
+To analyze this relationship more precisely, I ran a linear regression of my two variables of interest using all of the countries in the data set.
 
-In this milestone, I want to run linear regressions and create data visualizations that show the difference between my two variables of interest when countries with quotas are factored in, and when countries with quotas are removed from the model.
-
-# Linear Regression Of All Countries
-
-First, a linear regression and interpretation of all countries:
-
-```{r}
+```{r include = FALSE}
 ## Linear regression of all the countries called "total_regression"
 total_regression <- lm(`Electoral Democracy Index` ~ `Lower chamber female legislators`, data = women_dem_index)
+total_regression <- broom::tidy(total_regression)
+total_regression <- total_regression |>
+  select(-statistic)
+total_regression <- knitr::kable(total_regression, col.names = c("Term", "Estimate", "Standard Error", "P-Value"), digits = 3)
+```
+
+```{r echo = FALSE}
 total_regression
 ```
 
-This means that the linear model predicts that when there is 0 percentage points of female legislators, then the model predicts that the average electoral democracy index score is 0.31787 percentage points.
 
-This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by 0.00644 percentage points.
+This means that the linear model predicts that when there is 0 percentage points of female legislators, then the model predicts that the average electoral democracy index score is approximately 0.318 percentage points.This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by approximately 0.006 percentage points. Additionally, the standard error of the coefficient in this model is approximately 0.003, and the p-value is a number extremely close to 0. The standard error of 0.003 indicates that this model provides a relatively precise fit. This p-value means that the probability of getting more extreme values than the values in this linear model is extremely close to zero if the null hypothesis is true. This means that it is statistically significant, and I can reject the null hypothesis because the p-value is less than an $\alpha$ of 0.05. Because of this, I can conclude that high percentages of women in parliament has an effect on electoral democracy index scores.
 
-In terms of my research question, this means that as the percentage of female legislators increases, the electoral democracy index score also increases.
+### Plot and Interpretation of Secondary Analysis
 
-# Linear Regression & Visualization After Removing Confounders
+I also wanted to remove the factor of time when comparing the effect of women in parliament on electoral democracy index scores and see if there still is a positive correlation. By removing time, one might be able to see more clearly whether or not high percentages of women in parliament increase electoral democracy scores by comparing averages of the two variables of interest in one country. I started by taking the average of female legislators for each country and called this new tibble `avg_female_legis`. I then took the average of electoral democracy index scores for each country and called this new tibble `avg_edi`. I then joined these two tibbles together, and called this new tibble `avg_wdi`. The following table shows the average percentage of female legislators and electoral democracy index scores for the top 20 countries (alphabetically).
 
-In order to remove confounders, I had to figure out which countries have electoral quotas in the first place. This includes over 130 countries according to the International IDEA database. Using their database, I began figuring out which countries do not have gender quotas.
-
-```{r}
-## Filtering out the countries that do not have gender electoral quotas and calling it "no_quotas", this will be the countries that do not have ANY gender electoral quotas
-no_quotas <- women_dem_index |>
-  filter(`Entity` == "Afghanistan"| `Entity` == "Azerbaijan" | 
-    `Entity` == "The Bahamas" |
-    `Entity` == "Bahrain" |
-    `Entity` == "Barbados" |
-    `Entity` == "Belarus" |
-    `Entity` == "Belize" |
-    `Entity` == "Brunei" |
-    `Entity` == "Bulgaria" |
-    `Entity` == "Burma" |
-    `Entity` == "Cambodia" |
-    `Entity` == "Cuba" |
-    `Entity` == "Democratic Republic of Congo" |
-    `Entity` == "Denmark" |
-    `Entity` == "Dominica" |
-    `Entity` == "Estonia" |
-    `Entity` == "Ethiopia" |
-    `Entity` == "Fiji" |
-    `Entity` == "Finland" |
-    `Entity` == "The Gambia" |
-    `Entity` == "Georgia" |
-    `Entity` == "Grenada" |
-    `Entity` == "Iran" |
-    `Entity` == "Jamaica" |
-    `Entity` == "Kiribati" |
-    `Entity` == "Kuwait" |
-    `Entity` == "Laos" |
-    `Entity` == "Latvia" |
-    `Entity` == "Lebanon" |
-    `Entity` == "Liechtenstein" |
-    `Entity` == "Madagascar" |
-    `Entity` == "Marshall Islands" |
-    `Entity` == "Nauru" |
-    `Entity` == "Nigeria" |
-    `Entity` == "Niue" |
-    `Entity` == "North Macedonia" |
-    `Entity` == "Oman" |
-    `Entity` == "Palau" |
-    `Entity` == "Qatar" |
-    `Entity` == "Russia" |
-    `Entity` == "Saint Kitts and Nevis" |
-    `Entity` == "Saint Lucia" |
-    `Entity` == "Saint Vincent and the Grenadines" |
-    `Entity` == "Seychelles" |
-    `Entity` == "Singapore" |
-    `Entity` == "Syria" |
-    `Entity` == "Tajikistan" |
-    `Entity` == "Tonga" |
-    `Entity` == "Trinidad and Tobago" |
-    `Entity` == "Turkmenistan" |
-    `Entity` == "Tuvalu" |
-    `Entity` == "United States" |
-    `Entity` == "Yemen" |
-    `Entity` == "Zambia")
-no_quotas
-```
-
-Now, I will run a linear regression using the countries that do not have ANY gender electoral quotas.
-
-```{r}
-## Running a linear regression with the countries that don't have quotas
-no_quota_regression <- lm(`Electoral Democracy Index` ~ `Lower chamber female legislators`, data = no_quotas)
-no_quota_regression
-```
-
-This means that the linear model predicts that when there is 0 percentage points of female legislators, the average electoral democracy index score is 0.270663 percentage points.
-
-This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by 0.004347 percentage points.
-
-In terms of my research question, this means that once again as the percentage of female legislators increases, the electoral democracy index score also increases.
-
-Now, I want visualize the countries that have no electoral quotas through a graph.
-
-```{r}
-no_quota_graph <- no_quotas |>
-  ggplot(aes(x = `Lower chamber female legislators`,
-             y = `Electoral Democracy Index`)) +
-  geom_point(alpha = 0.25, color = "dodgerblue2") +
-  geom_smooth(method = "lm", color = "indianred3") +
-  ylim(c(0, 1)) +
-  labs(
-    x = "Lower chamber female legislators (%)",
-    y = "Electoral democracy index (0 to 1)",
-    title = "The Relationship Between Female Legislators and Electoral Democracy Index",
-    caption = "Source: Varieties of Democracy (V-Dem)",
-    fill = "World Region According to OWID"
-  )
-no_quota_graph
-```
-
-This helps to show the positive correlation between percentages of female legislators and electoral democracy index scores.
-
-# Looking at the Averages of Each Country
-
-This data set shows the changes of percentage of female legislators and electoral democracy index score throughout time. Instead, let's look at the average percentage of female legislators and the electoral democracy index score per country, and see if there is still a positive correlation.
-
-```{r}
+```{r include = FALSE}
 ## Finding averages for female legislators across countries
-avg_female_legs <- women_dem_index |> 
+avg_female_legis <- women_dem_index |> 
   select("Entity", "Lower chamber female legislators", "World region according to OWID") |>
   aggregate(`Lower chamber female legislators` ~ Entity, mean, na.rm = TRUE)
 
@@ -209,16 +139,16 @@ avg_edi <- women_dem_index |>
   aggregate(`Electoral Democracy Index` ~ Entity, mean, na.rm = TRUE)
 
 ## Joining these two data sets together in order to create graph
-avg_wdi <- left_join(avg_female_legs, avg_edi, join_by("Entity" == "Entity"))
-
-
-## Creates nice looking table of what "avg_wdi"
-knitr::kable(avg_wdi)
+avg_wdi <- left_join(avg_female_legis, avg_edi, join_by("Entity" == "Entity"))
 ```
 
-Now, visualizing this tibble in a graph.
+```{r echo = FALSE}
+knitr::kable(head(avg_wdi, n = 20), digits = 3)
+```
 
-```{r}
+I then created a graph using this table. I called the graph of the averages `avg_wdi_plot`.
+
+```{r include = FALSE}
 ## Making a graph called "avg_wdi_plot" which takes the table created above and puts it into graph form
 avg_wdi_plot <- ggplot(avg_wdi, aes(
   x = `Lower chamber female legislators`,
@@ -235,66 +165,57 @@ avg_wdi_plot <- ggplot(avg_wdi, aes(
 avg_wdi_plot
 ```
 
-There still is a positive correlation (just a little less obvious than before).
+```{r echo = FALSE}
+## Plot of secondary analysis
+avg_wdi_plot
+```
 
-Running a linear regression to get some concrete numbers:
+This graph still shows a slight positive correlation between the average of female legislators and the average electoral democracy index scores for each country. The average percentage of female legislators still seems to have some sort of effect on the average electoral democracy index score. 
 
-```{r}
+### Regression Output of the Secondary Relationship
+
+I then used the tibble `avg_wdi` to run a linear regression model.
+
+```{r include = FALSE}
 avg_wdi_regression <- lm(`Electoral Democracy Index` ~ `Lower chamber female legislators`, data = avg_wdi)
+avg_wdi_regression <- broom::tidy(avg_wdi_regression)
+avg_wdi_regression <- avg_wdi_regression |>
+  select(term, estimate)
+avg_wdi_regression <- knitr::kable(avg_wdi_regression, col.names = c("Term", "Estimate"), digits = 3)
+```
+
+```{r echo = FALSE}
 avg_wdi_regression
 ```
 
-This means that the linear model predicts that when there is 0 percentage points of female legislators, the average electoral democracy index score is 0.32926 percentage points.
 
-This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by 0.00316 percentage points.
+This means that the linear model predicts that when there is 0 percentage points of female legislators, the average electoral democracy index score is approximately 0.329 percentage points.This also means that for every one percentage point increase in female legislators, the model predicts an increase in the electoral democracy index score by approximately 0.003 percentage points. In terms of my research question, this means that once again as the percentage of female legislators increases, the electoral democracy index score also increases.
 
-In terms of my research question, this means that once again as the percentage of female legislators increases, the electoral democracy index score also increases.
+### Should these results be interpreted causally?
+
+While it is a relatively small increase, both of the relationships illsutrated that as the percentage of females in a country's legislature increased, electoral democracy index scores also increased. However, this is **not** necessarily a causal effect. On first observation one can see that there is not a relatively strong correlation between the explanatory and outcome variables within the graphs. The points on the scatter plots are not necessarily close to the linear model lines, which shows that there is not a consistent linear relationship. 
+
+Additionally, when looking at the table which shows the averages of the two variables in a given country, the top 20 country prove that increases in females in a country's legislature does not necessarily mean increases in electoral democracy index scores. For instance, Australia's legislature is approximately 7% female, and averages around 0.83 in the electoral democracy index. Angola has a higher percentage of females in its legislature than Australia, but only averages 0.17 in the electoral democracy index. This shows that higher percentages of females in a country's legislature doesn't necessarily result in a higher electoral democracy index score.
+
+Finally, it would be difficult to interpret this effect causally because I have not eliminated confounders. Some potential confounders in this relationship could include education levels and culture/norms. To explain further, education levels varying across countries could impact the percentage of women in parliament because unequal levels of education between genders could lead to more/less women on the ballot. Additionally, many studies have found that varying education levels in countries can be part of a reason for higher/lower democracy scores. Culture could also be a confounder within this data set because certain cultures could encourage or discourage women in politics and could additionally approve or disapprove of democractic values. Because I did not control for these confounders, the effect that women in parliament has on electoral democracy index scores is not able to be interpreted causally.
+
+## Conclusion
+
+In conclusion, I reject the null hypothesis that the percentage of women in parliament has no effect on electoral democracy index scores. In fact, through both models and regressions I found that the percentage of women in parliament consistently had a positive effect on electoral democracy scores. The p-value of the total regression proved that the increase was statistically significant and allowed me to reject the null. Because of potential confounders and initial observations however, this increase cannot be interpreted causally. Therefore, my analysis is limited in the fact that it doesn't control for these confounders. If I had more time or money, I would take the time to control for these potential confounders. In the end I find that while equal gender representation may not be the only factor that contributes to electoral democracy index scores, it would be worthwhile to continue to search for what can contribute to building strong democracies.
 
 
-## For my Own Interest ~ Expanding Further:
 
-# Looking at the variables across different regions:
 
-Asia:
-```{r}
-## Filtering to only Asian countries
-women_dem_index_asia <- women_dem_index |>
-  filter(`World region according to OWID` == "Asia")
 
-## Creating the graph
-wdi_plot_asia <- ggplot(women_dem_index_asia, aes(x = `Lower chamber female legislators`,
-                                                  y = `Electoral Democracy Index`)) +
-  geom_point(alpha = 0.5, color = "dodgerblue2") +
-  geom_smooth(method = "lm", color = "indianred3")
-wdi_plot_asia
+
+
+
+
+
+## Complete Code Printout:
+
+```{r print-code, ref.label=knitr::all_labels(), echo = TRUE, eval = FALSE}
+## Print code
 ```
-
-Europe:
-```{r}
-## Filtering to only European countries
-women_dem_index_euro <- women_dem_index |>
-  filter(`World region according to OWID` == "Europe")
-
-## Creating the graph
-wdi_plot_euro <- ggplot(women_dem_index_euro, aes(x = `Lower chamber female legislators`,
-                                                  y = `Electoral Democracy Index`)) +
-  geom_point(alpha = 0.5, color = "dodgerblue2") +
-  geom_smooth(method = "lm", color = "indianred3")
-wdi_plot_euro
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
